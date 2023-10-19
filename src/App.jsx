@@ -1,31 +1,51 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { AuthProvider } from "./context/auth";
 
-function App() {
-   const [count, setCount] = useState(0);
+import RootLayout from "./layouts/root";
+import Home from "./pages/home";
+import Dashboard from "./pages/dashboard";
 
+import AuthLayout from "./layouts/auth";
+import Login from "./pages/login";
+import Register from "./pages/register";
+
+const router = createBrowserRouter([
+   {
+      id: "root",
+      path: "/",
+      element: <RootLayout />,
+      children: [
+         {
+            index: true,
+            element: <Home />,
+         },
+         {
+            path: "dashboard",
+            element: <Dashboard />,
+         },
+      ],
+   },
+   {
+      id: "auth",
+      path: "/",
+      element: <AuthLayout />,
+      children: [
+         {
+            path: "login",
+            element: <Login />,
+         },
+         {
+            path: "register",
+            element: <Register />,
+         },
+      ],
+   },
+]);
+
+export default function App() {
    return (
-      <>
-         <div>
-            <a href="https://vitejs.dev" target="_blank">
-               <img src={viteLogo} className="logo" alt="Vite logo" />
-            </a>
-            <a href="https://react.dev" target="_blank">
-               <img src={reactLogo} className="logo react" alt="React logo" />
-            </a>
-         </div>
-         <h1>Bank Website</h1>
-         <div className="card">
-            <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
-            <p>
-               Edit <code>src/App.jsx</code> and save to test HMR
-            </p>
-         </div>
-         <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
-      </>
+      <AuthProvider>
+         <RouterProvider router={router} fallbackElement={<p>Initial Load...</p>} />
+      </AuthProvider>
    );
 }
-
-export default App;
