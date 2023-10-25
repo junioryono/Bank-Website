@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../context/auth";
 
 export default function RootLayout() {
-   const { username } = useAuth();
+   const user = useAuth();
 
    return (
       <div className="flex flex-col text-text-primary">
@@ -16,7 +16,7 @@ export default function RootLayout() {
                <div className="flex items-center gap-6">
                   <Link to="/help">Help</Link>
                   <Link to="/about-us">About Us</Link>
-                  {!username ? (
+                  {!user ? (
                      <>
                         <Link to="/register">Register</Link>
                         <Link

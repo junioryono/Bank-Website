@@ -4,16 +4,16 @@ import { useAuth } from "../../context/auth";
 import { Link } from "react-router-dom";
 
 export default function ForgotPassword() {
-   const { username } = useAuth();
+   const user = useAuth();
    const navigate = useNavigate();
 
    useEffect(() => {
-      if (username) {
+      if (user) {
          navigate("/dashboard");
       }
-   }, [username]);
+   }, [user]);
 
-   if (username) {
+   if (user) {
       return null;
    }
 
