@@ -16,6 +16,7 @@ export default {
          colors: {
             ...colors,
             primary: "#FF6363",
+            "text-primary": "#3B3331",
          },
       },
    },
