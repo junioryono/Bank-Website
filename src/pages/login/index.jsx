@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/auth";
+import { Link } from "react-router-dom";
 
 export default function Login() {
    const { username } = useAuth();
@@ -19,7 +20,7 @@ export default function Login() {
    return (
       <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
          <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-            <div className="flex items-center justify-center text-4xl font-bold text-[#D71E28] cursor-default"> ACU</div>
+            <div className="flex items-center justify-center text-5xl font-bold text-[#D71E28] cursor-default"> ACU</div>
             <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
                Sign in to your account
             </h2>
@@ -49,9 +50,9 @@ export default function Login() {
                         Password
                      </label>
                      <div className="text-sm">
-                        <a href="#" className="font-semibold text-[#D71E28] hover:text-red-500">
+                        <Link to="/" className="font-semibold text-[#D71E28] hover:text-red-500 cursor-pointer">
                            Forgot password?
-                        </a>
+                        </Link>
                      </div>
                   </div>
                   <div className="mt-2">
@@ -76,9 +77,11 @@ export default function Login() {
                </div>
             </form>
 
-            <p className="mt-10 text-center text-sm text-gray-500">
-               Not a member?
-               <div className="font-semibold leading-6 text-[#D71E28] cursor-default">That sucks.</div>
+            <p className="mt-10 text-center text-sm text-gray-500 flex-col">
+               <div>Not a member?</div>
+               <Link to="/" className="font-semibold leading-6 text-[#D71E28] cursor-pointer">
+                  Sign up here!
+               </Link>
             </p>
          </div>
       </div>
