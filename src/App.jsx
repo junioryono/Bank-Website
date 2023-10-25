@@ -6,6 +6,7 @@ import Home from "./pages/home";
 import Help from "./pages/help";
 import AboutUs from "./pages/about-us";
 import Dashboard from "./pages/dashboard";
+import ForgotPassword from "./pages/forgot-password";
 
 import AuthLayout from "./layouts/auth";
 import Login from "./pages/login";
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
          {
             path: "register",
             element: <Register />,
+         },
+         {
+            path: "forgot-password",
+            element: <ForgotPassword />,
          },
       ],
    },
