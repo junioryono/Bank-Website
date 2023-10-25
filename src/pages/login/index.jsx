@@ -50,7 +50,10 @@ export default function Login() {
                         Password
                      </label>
                      <div className="text-sm">
-                        <Link to="/" className="font-semibold text-[#D71E28] hover:text-red-500 cursor-pointer">
+                        <Link
+                           to="/forgot-password"
+                           className="font-semibold text-[#D71E28] hover:text-red-500 cursor-pointer"
+                        >
                            Forgot password?
                         </Link>
                      </div>
@@ -79,7 +82,7 @@ export default function Login() {
 
             <p className="mt-10 text-center text-sm text-gray-500 flex-col">
                <div>Not a member?</div>
-               <Link to="/" className="font-semibold leading-6 text-[#D71E28] cursor-pointer">
+               <Link to="/register" className="font-semibold leading-6 text-[#D71E28] cursor-pointer">
                   Sign up here!
                </Link>
             </p>
