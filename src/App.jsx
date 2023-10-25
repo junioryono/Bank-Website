@@ -3,6 +3,8 @@ import { AuthProvider } from "./context/auth";
 
 import RootLayout from "./layouts/root";
 import Home from "./pages/home";
+import Help from "./pages/help";
+import AboutUs from "./pages/about-us";
 import Dashboard from "./pages/dashboard";
 
 import AuthLayout from "./layouts/auth";
@@ -18,6 +20,14 @@ const router = createBrowserRouter([
          {
             index: true,
             element: <Home />,
+         },
+         {
+            path: "help",
+            element: <Help />,
+         },
+         {
+            path: "about-us",
+            element: <AboutUs />,
          },
          {
             path: "dashboard",
