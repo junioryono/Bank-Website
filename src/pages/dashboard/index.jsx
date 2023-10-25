@@ -3,16 +3,16 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/auth";
 
 export default function Dashboard() {
-   const { username } = useAuth();
+   const user = useAuth();
    const navigate = useNavigate();
 
    useEffect(() => {
-      if (!username) {
+      if (!user) {
          navigate("/login?redirect=/dashboard");
       }
-   }, [username]);
+   }, [user]);
 
-   if (!username) {
+   if (!user) {
       return null;
    }
 
