@@ -1,16 +1,16 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import { AuthProvider } from "./context/auth";
+import { AuthProvider } from "context/auth";
 
-import RootLayout from "./layouts/root";
-import Home from "./pages/home";
-import Help from "./pages/help";
-import AboutUs from "./pages/about-us";
-import Dashboard from "./pages/dashboard";
-import ForgotPassword from "./pages/forgot-password";
+import RootLayout from "layouts/root";
+import Home from "pages/home";
+import Help from "pages/help";
+import AboutUs from "pages/about-us";
+import Dashboard from "pages/dashboard";
+import ForgotPassword from "pages/forgot-password";
 
-import AuthLayout from "./layouts/auth";
-import Login from "./pages/login";
-import Register from "./pages/register";
+import AuthLayout from "layouts/auth";
+import Login from "pages/login";
+import Register from "pages/register";
 
 const router = createBrowserRouter([
    {
