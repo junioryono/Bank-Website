@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { useAuth } from "../context/auth";
+import { useAuth } from "context/auth";
 
 export default function RootLayout() {
    const user = useAuth();
