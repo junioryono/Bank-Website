@@ -6,10 +6,10 @@ export default function RootLayout() {
    const user = useAuth();
 
    return (
-      <div className="flex flex-col text-text-primary">
+      <div className="flex flex-col h-screen text-text-primary">
          {/* BEGIN HEADER */}
          <div className="text-white bg-[#D71E28]">
-            <div className="container flex justify-between pt-4 pb-3 ">
+            <div className="container flex justify-between pt-4 pb-3">
                <Link to="/" className="text-3xl">
                   Aztec Credit Union
                </Link>
@@ -43,7 +43,7 @@ export default function RootLayout() {
          {/* END HEADER */}
 
          {/* BEGIN CHILD CONTENT */}
-         <div className="container flex flex-col">
+         <div className="container flex flex-col mb-auto">
             <Outlet />
          </div>
          {/* END CHILD CONTENT */}
