@@ -7,6 +7,9 @@ import Help from "pages/help";
 import AboutUs from "pages/about-us";
 import Dashboard from "pages/dashboard";
 import ForgotPassword from "pages/forgot-password";
+import Apply from "pages/apply";
+import CreateCheckings from "pages/create/checkings";
+import CreateSavings from "pages/create/savings";
 
 import AuthLayout from "layouts/auth";
 import Login from "pages/login";
@@ -33,6 +36,22 @@ const router = createBrowserRouter([
          {
             path: "dashboard",
             element: <Dashboard />,
+         },
+         {
+            path: "apply/credit-card",
+            element: <Apply type="Credit Card" />,
+         },
+         {
+            path: "apply/loan",
+            element: <Apply type="Loan" />,
+         },
+         {
+            path: "create/checkings",
+            element: <CreateCheckings />,
+         },
+         {
+            path: "create/savings",
+            element: <CreateSavings />,
          },
       ],
    },

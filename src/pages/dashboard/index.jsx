@@ -9,13 +9,13 @@ export default function Dashboard() {
    const navigate = useNavigate();
 
    useEffect(() => {
-      if (!user) {
+      if (user === null) {
          navigate("/login?redirect=/dashboard");
       }
    }, [user]);
 
    const checkingsAndSavingsAccounts = useMemo(() => {
-      if (!user) {
+      if (user === null) {
          return [];
       }
 
@@ -25,7 +25,7 @@ export default function Dashboard() {
    }, [user]);
 
    const creditCardAndLoanAccounts = useMemo(() => {
-      if (!user) {
+      if (user === null) {
          return [];
       }
 
@@ -98,6 +98,14 @@ export default function Dashboard() {
                   );
                })}
             </ul>
+            <Link to="/apply/loan" className="flex justify-between gap-x-6 py-5 hover-bg-gray-300 cursor-pointer px-5">
+               <div className="flex min-w-0 gap-x-4">
+                  <div className="min-w-0 flex-auto">
+                     <p className="text-lg font-semibold leading-6 text-gray-900 pb-3">Apply for a Loan</p>
+                     <p className="mt-1 truncate text-sm leading-5 text-gray-500">Click here to apply for a loan.</p>
+                  </div>
+               </div>
+            </Link>
          </div>
       </div>
    );
