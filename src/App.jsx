@@ -8,8 +8,7 @@ import AboutUs from "pages/about-us";
 import Dashboard from "pages/dashboard";
 import ForgotPassword from "pages/forgot-password";
 import Apply from "pages/apply";
-import CreateCheckings from "pages/create/checkings";
-import CreateSavings from "pages/create/savings";
+import Create from "pages/create";
 
 import AuthLayout from "layouts/auth";
 import Login from "pages/login";
@@ -47,11 +46,11 @@ const router = createBrowserRouter([
          },
          {
             path: "create/checkings",
-            element: <CreateCheckings />,
+            element: <Create type="Checkings" />,
          },
          {
             path: "create/savings",
-            element: <CreateSavings />,
+            element: <Create type="Savings" />,
          },
       ],
    },

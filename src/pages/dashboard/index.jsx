@@ -15,7 +15,7 @@ export default function Dashboard() {
    }, [user]);
 
    const checkingsAndSavingsAccounts = useMemo(() => {
-      if (user === null) {
+      if (!user) {
          return [];
       }
 
@@ -25,7 +25,7 @@ export default function Dashboard() {
    }, [user]);
 
    const creditCardAndLoanAccounts = useMemo(() => {
-      if (user === null) {
+      if (!user) {
          return [];
       }
 
