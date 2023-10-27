@@ -98,7 +98,7 @@ export default function Dashboard() {
                   );
                })}
             </ul>
-            <Link to="/" className="flex justify-between gap-x-6 py-5 hover-bg-gray-300 cursor-pointer px-5">
+            <Link to="/apply/loan" className="flex justify-between gap-x-6 py-5 hover-bg-gray-300 cursor-pointer px-5">
                <div className="flex min-w-0 gap-x-4">
                   <div className="min-w-0 flex-auto">
                      <p className="text-lg font-semibold leading-6 text-gray-900 pb-3">Apply for a Loan</p>
