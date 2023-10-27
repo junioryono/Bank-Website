@@ -60,7 +60,7 @@ export const useAuth = () => {
 };
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-   const [user, setUser] = useState<User | null>(null);
+   const [user, setUser] = useState<User | null | undefined>(undefined);
 
    useEffect(() => {
       const enableTestUser = true;
@@ -113,6 +113,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
                },
             ],
          });
+      } else {
+         setUser(null);
       }
    }, []);
 

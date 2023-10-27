@@ -9,13 +9,13 @@ export default function Dashboard() {
    const navigate = useNavigate();
 
    useEffect(() => {
-      if (!user) {
+      if (user === null) {
          navigate("/login?redirect=/dashboard");
       }
    }, [user]);
 
    const checkingsAndSavingsAccounts = useMemo(() => {
-      if (!user) {
+      if (user === null) {
          return [];
       }
 
@@ -25,7 +25,7 @@ export default function Dashboard() {
    }, [user]);
 
    const creditCardAndLoanAccounts = useMemo(() => {
-      if (!user) {
+      if (user === null) {
          return [];
       }
 
