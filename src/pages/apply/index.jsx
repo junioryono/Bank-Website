@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "context/auth";
 import { Link } from "react-router-dom";
 
-export default function Loan() {
+// Type would either be "Credit Card" or "Loan"
+export default function Apply({ type }) {
    const user = useAuth();
    const navigate = useNavigate();
 
@@ -20,7 +21,11 @@ export default function Loan() {
    return (
       <form>
          <div className="container max-w-4xl my-10">
-            <div className="border-b border-gray-900/10 pb-12">
+            <div className="border-b border-gray-900/10">
+               <h1 className="text-3xl font-semibold leading-7 py-6 text-gray-900">Apply for a {type}</h1>
+            </div>
+
+            <div className="border-b border-gray-900/10 pb-12 pt-10">
                <h2 className="text-base font-semibold leading-7 text-gray-900">Personal Information</h2>
                <p className="mt-1 text-sm leading-6 text-gray-600">Use a permanent address where you can receive mail.</p>
 

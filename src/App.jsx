@@ -7,8 +7,7 @@ import Help from "pages/help";
 import AboutUs from "pages/about-us";
 import Dashboard from "pages/dashboard";
 import ForgotPassword from "pages/forgot-password";
-import ApplyCreditCard from "pages/apply/credit-card";
-import ApplyLoan from "pages/apply/loan";
+import Apply from "pages/apply";
 import CreateCheckings from "pages/create/checkings";
 import CreateSavings from "pages/create/savings";
 
@@ -40,11 +39,11 @@ const router = createBrowserRouter([
          },
          {
             path: "apply/credit-card",
-            element: <ApplyCreditCard />,
+            element: <Apply type="Credit Card" />,
          },
          {
             path: "apply/loan",
-            element: <ApplyLoan />,
+            element: <Apply type="Loan" />,
          },
          {
             path: "create/checkings",
