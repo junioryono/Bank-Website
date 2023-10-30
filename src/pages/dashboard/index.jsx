@@ -101,8 +101,8 @@ export default function Dashboard() {
             <Link to="/apply/loan" className="flex justify-between gap-x-6 py-5 hover-bg-gray-300 cursor-pointer px-5">
                <div className="flex min-w-0 gap-x-4">
                   <div className="min-w-0 flex-auto">
-                     <p className="text-lg font-semibold leading-6 text-gray-900 pb-3">Apply for a Loan</p>
-                     <p className="mt-1 truncate text-sm leading-5 text-gray-500">Click here to apply for a loan.</p>
+                     <p className="text-lg font-semibold leading-6 text-gray-900 pb-3">Apply for a Loan or Credit Card</p>
+                     <p className="mt-1 truncate text-sm leading-5 text-gray-500">Click here to apply.</p>
                   </div>
                </div>
             </Link>
