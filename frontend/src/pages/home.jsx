@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import { useAuth } from "../../context/auth";
-import dashboardImage from "../../images/image.png";
+import { useAuth } from "context/auth";
+import dashboardImage from "images/dashboard_screenshot.png";
 
 export default function Home() {
    const user = useAuth();
@@ -8,39 +8,23 @@ export default function Home() {
       <>
          {/* Navbar */}
          <nav className="flex bg-center gap-20 border-b-2">
-            <Link
-               to={!user ? "/" : "create/checkings"}
-               className="hover:bg-orange-50 hover:underline rounded-md px-3 py-3"
-               onClick={() => (!user ? alert("You must log-in first") : "")}
-            >
+            <Link to="/create/checkings" className="hover:bg-orange-50 hover:underline rounded-md px-3 py-3">
                Checking
             </Link>
-            <Link
-               to={!user ? "/" : "create/savings"}
-               className="hover:bg-orange-50 hover:underline rounded-md px-3 py-3"
-               onClick={() => (!user ? alert("You must log-in first") : "")}
-            >
+            <Link to="/create/savings" className="hover:bg-orange-50 hover:underline rounded-md px-3 py-3">
                Savings
             </Link>
-            <Link
-               to={!user ? "/" : "apply/credit-card"}
-               className="hover:bg-orange-50 hover:underline rounded-md px-3 py-3"
-               onClick={() => (!user ? alert("You must log-in first") : "")}
-            >
+            <Link to="/apply/credit-card" className="hover:bg-orange-50 hover:underline rounded-md px-3 py-3">
                Credit Cards
             </Link>
-            <Link
-               to={!user ? "/" : "apply/loan"}
-               className="hover:bg-orange-50 hover:underline rounded-md px-3 py-3"
-               onClick={() => (!user ? alert("You must log-in first") : "")}
-            >
+            <Link to="/apply/loan" className="hover:bg-orange-50 hover:underline rounded-md px-3 py-3">
                Loans
             </Link>
          </nav>
 
          {/* Banner */}
          <div className="bg-orange-50 mt-2">
-            <div className="m-5 flex">
+            <div className="flex px-16 py-24">
                {!user ? (
                   <div className="w-full max-w-xs">
                      <form className="bg-white shadow-2xl rounded-lg px-4 pt-6 pb-8 mb-4">
@@ -85,25 +69,21 @@ export default function Home() {
                   </div>
                ) : (
                   <div className="w-full max-w-xs">
-                     <form className="bg-white shadow-2xl rounded-lg px-4 pt-6 pb-8 mb-4">
-                        <h1 className=" text-2xl font-light">Welcome back {user.name}!</h1>
-                        <h2 className="font-light pb-3">What can we help you with today.</h2>
+                     <form className="bg-white shadow-2xl rounded-lg px-4 pt-8 pb-8 mb-4">
+                        <h1 className=" text-2xl font-light">Welcome back, {user.name}!</h1>
+                        <h2 className="font-light pt-2">What can we help you with today?</h2>
                      </form>
                   </div>
                )}
-               <div className="flex-col">
-                  <div>
-                     <h1 className="p-9  text-5xl text-red-700">
-                        50% student loans credit when you apply for a loan with Aztec Credit Union!
-                     </h1>
-                  </div>
-                  <div className="p-9">
-                     <p className="text-gray-500">*Must be a currnet student at San Diego State University</p>
-                  </div>
+               <div className="flex-col px-9">
+                  <h1 className="pb-4 text-5xl text-red-700">
+                     50% student loans credit when you apply for a loan with Aztec Credit Union!
+                  </h1>
+                  <p className="text-gray-500">*Must be a current student at San Diego State University</p>
                </div>
             </div>
          </div>
-         <div className="bg-white py-24 sm:py-32">
+         <div className="bg-white py-14 sm:py-16">
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
                <div className="mx-auto max-w-2xl lg:text-center">
                   <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Banking made easy.</p>
@@ -228,7 +208,7 @@ export default function Home() {
                               The dashboard is a great way to manage your money. You can see all of your accounts in one
                               place.
                            </p>
-                           <dl className="mt-10 max-w-xl space-y-8 text-base leading-7 text-gray-600 lg:max-w-none">
+                           <div className="mt-10 max-w-xl space-y-8 text-base leading-7 text-gray-600 lg:max-w-none">
                               <div className="relative pl-9">
                                  <dt className="inline font-semibold text-gray-900">
                                     <svg
@@ -290,10 +270,10 @@ export default function Home() {
                                     Apply made easy. You can apply for a loan right from your dashboard.
                                  </dd>
                               </div>
-                           </dl>
+                           </div>
                         </div>
                      </div>
-                     <img src={dashboardImage} alt="Dashboard Image" />
+                     <img className="self-center pt-6" src={dashboardImage} alt="Dashboard Image" />
                   </div>
                </div>
             </div>

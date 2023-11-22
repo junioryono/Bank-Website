@@ -10,7 +10,7 @@ export default function Apply({ type }) {
 
    useEffect(() => {
       if (user === null) {
-         navigate("/login?redirect=/apply/" + type === "Credit Card" ? "credit-card" : "loan");
+         navigate("/login?redirect=/apply/" + (type === "Credit Card" ? "credit-card" : "loan"));
       }
    }, [user]);
 

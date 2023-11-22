@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "context/auth";
 import { Link } from "react-router-dom";
@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 export default function Register() {
    const user = useAuth();
    const navigate = useNavigate();
+   const queryParams = useMemo(() => new URLSearchParams(window.location.search), []);
 
    useEffect(() => {
       if (user) {
@@ -106,7 +107,10 @@ export default function Register() {
 
             <p className="mt-10 text-center text-sm text-gray-500 flex-col">
                <div>Already a member?</div>
-               <Link to="/login" className="font-semibold leading-6 text-[#D71E28] cursor-pointer">
+               <Link
+                  to={"/login" + (queryParams ? "?" + queryParams.toString() : "")}
+                  className="font-semibold leading-6 text-[#D71E28] cursor-pointer"
+               >
                   Sign in here!
                </Link>
             </p>
