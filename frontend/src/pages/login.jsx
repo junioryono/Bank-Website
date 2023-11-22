@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "context/auth";
 import { Link } from "react-router-dom";
@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 export default function Login() {
    const user = useAuth();
    const navigate = useNavigate();
+   const queryParams = useMemo(() => new URLSearchParams(window.location.search), []);
 
    useEffect(() => {
       if (user) {
@@ -57,7 +58,7 @@ export default function Login() {
                      </label>
                      <div className="text-sm">
                         <Link
-                           to="/forgot-password"
+                           to={"/forgot-password" + (queryParams ? "?" + queryParams.toString() : "")}
                            className="font-semibold text-[#D71E28] hover:text-red-500 cursor-pointer"
                         >
                            Forgot password?
@@ -88,7 +89,10 @@ export default function Login() {
 
             <p className="mt-10 text-center text-sm text-gray-500 flex-col">
                <div>Not a member?</div>
-               <Link to="/register" className="font-semibold leading-6 text-[#D71E28] cursor-pointer">
+               <Link
+                  to={"/register" + (queryParams ? "?" + queryParams.toString() : "")}
+                  className="font-semibold leading-6 text-[#D71E28] cursor-pointer"
+               >
                   Sign up here!
                </Link>
             </p>

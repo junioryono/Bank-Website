@@ -10,6 +10,7 @@ export default defineConfig({
    resolve: {
       alias: {
          context: path.resolve(__dirname, "./src/context"),
+         images: path.resolve(__dirname, "./src/images"),
          layouts: path.resolve(__dirname, "./src/layouts"),
          pages: path.resolve(__dirname, "./src/pages"),
          utilities: path.resolve(__dirname, "./src/utilities"),

@@ -10,7 +10,7 @@ export default function Create({ type }) {
 
    useEffect(() => {
       if (user === null) {
-         navigate("/login?redirect=/create/" + type === "Checkings" ? "checkings" : "savings");
+         navigate("/login?redirect=/create/" + (type === "Checkings" ? "checkings" : "savings"));
       }
    }, [user]);
 
