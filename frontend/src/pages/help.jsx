@@ -19,7 +19,7 @@ export default function Help() {
                               clip-rule="evenodd"
                            ></path>
                         </svg>
-                        How do I check my bank statements?
+                        How do I check my bank statements online?
                      </h3>
                      <p className="text-gray-500">
                         You can view your bank statements by clicking on the "Dashboard" tab on the left side of the screen.
