@@ -225,7 +225,7 @@ export default function Home() {
                               An easy way to manage your money.
                            </p>
                            <p className="mt-6 text-lg leading-8 text-gray-600">
-                              The dashbaord is a great way to manage your money. You can see all of your accounts in one
+                              The dashboard is a great way to manage your money. You can see all of your accounts in one
                               place.
                            </p>
                            <dl className="mt-10 max-w-xl space-y-8 text-base leading-7 text-gray-600 lg:max-w-none">
