@@ -42,6 +42,22 @@ export default function RootLayout() {
          <div className="h-1 bg-[#FFCD41]" />
          {/* END HEADER */}
 
+         {/* Navbar */}
+         <nav className="flex bg-center border-b-2 bg-zinc-50">
+            <Link to="/create/checkings" className="hover:bg-orange-50 hover:underline rounded-md px-16 py-3 m-0 p-8">
+               Checking
+            </Link>
+            <Link to="/create/savings" className="hover:bg-orange-50 hover:underline rounded-md px-16 py-3">
+               Savings
+            </Link>
+            <Link to="/apply/credit-card" className="hover:bg-orange-50 hover:underline rounded-md px-16 py-3">
+               Credit Cards
+            </Link>
+            <Link to="/apply/loan" className="hover:bg-orange-50 hover:underline rounded-md px-16 py-3">
+               Loans
+            </Link>
+         </nav>
+
          {/* BEGIN CHILD CONTENT */}
          <div className="container flex flex-col mb-auto">
             <Outlet />

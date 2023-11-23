@@ -6,22 +6,6 @@ export default function Home() {
    const user = useAuth();
    return (
       <>
-         {/* Navbar */}
-         <nav className="flex bg-center gap-20 border-b-2">
-            <Link to="/create/checkings" className="hover:bg-orange-50 hover:underline rounded-md px-3 py-3">
-               Checking
-            </Link>
-            <Link to="/create/savings" className="hover:bg-orange-50 hover:underline rounded-md px-3 py-3">
-               Savings
-            </Link>
-            <Link to="/apply/credit-card" className="hover:bg-orange-50 hover:underline rounded-md px-3 py-3">
-               Credit Cards
-            </Link>
-            <Link to="/apply/loan" className="hover:bg-orange-50 hover:underline rounded-md px-3 py-3">
-               Loans
-            </Link>
-         </nav>
-
          {/* Banner */}
          <div className="bg-orange-50 mt-2">
             <div className="flex px-16 py-24">
