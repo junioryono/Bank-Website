@@ -29,7 +29,7 @@ export default function RootLayout() {
                            Dashboard
                         </Link>
 
-                        <Link to="/Profile" type="button">
+                        <Link to="/user" type="button">
                            <img src={Defualt_Profile_img} className="rounded-full w-9" />
                         </Link>
                      </>
