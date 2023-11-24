@@ -1,6 +1,6 @@
 import { useAuth } from "context/auth";
 import { useNavigate } from "react-router-dom";
-import Defualt_Profile_img from "images/Default_Profile.jpg";
+import Default_Profile_img from "images/Default_Profile.jpg";
 
 export default function profile() {
    const user = useAuth();
@@ -11,7 +11,7 @@ export default function profile() {
          {user ? (
             <>
                <div className="flex justify-center">
-                  <img src={Defualt_Profile_img} className="rounded-full w-60 mt-10" />
+                  <img src={Default_Profile_img} className="rounded-full w-60 mt-10" />
                </div>
                <div className="shadow ">
                   <div className="px-4 py-5 sm:px-6">
