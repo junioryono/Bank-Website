@@ -11,7 +11,7 @@ export default function Home() {
             <div className="flex px-16 py-24">
                {!user ? (
                   <div className="w-full max-w-xs">
-                     <form className="bg-white shadow-2xl rounded-lg px-4 pt-6 pb-8 mb-4">
+                     <form className="bg-white shadow-2xl rounded-lg px-4 pt-6 pb-8 mb-4" method="POST">
                         <h1 className=" text-2xl font-light">Hello</h1>
                         <h2 className="font-light pb-3">Sign on to manage your accounts.</h2>
                         <div className="mb-10">
@@ -31,13 +31,12 @@ export default function Home() {
                            />
                         </div>
                         <div className="flex items-center justify-evenly">
-                           <a
+                           <button
                               className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-10 rounded-full focus:outline-none focus:shadow-outline"
                               type="submit"
-                              href="/login"
                            >
                               Sign In
-                           </a>
+                           </button>
                            <a
                               className="inline-block align-baseline font-bold text-sm text-black hover:underline"
                               href="/register"
