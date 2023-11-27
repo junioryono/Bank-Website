@@ -9,6 +9,7 @@ import Dashboard from "pages/dashboard";
 import ForgotPassword from "pages/forgot-password";
 import Apply from "pages/apply";
 import Create from "pages/create";
+import Profile from "pages/profile";
 
 import AuthLayout from "layouts/auth";
 import Login from "pages/login";
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
          {
             path: "create/savings",
             element: <Create type="Savings" />,
+         },
+         {
+            path: "user",
+            element: <Profile />,
          },
       ],
    },
