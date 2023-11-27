@@ -43,18 +43,43 @@ export default function Help() {
 // Example FAQ data
 const faqData = [
    {
-      question: "What is Material Tailwind?",
+      question: "How do I check my bank statement online?",
       answer:
-         "We're not always in the position that we want to be at. We're constantly growing. We're constantly making mistakes. We're constantly trying to express ourselves and actualize our dreams.",
+         "You can view your bank statements by clicking on the Dashboard tab on the left side of the screen.",
    },
    {
-      question: "How to use Material Tailwind?",
+      question: "How do I create a checking account?",
       answer:
-         "We're not always in the position that we want to be at. We're constantly growing. We're constantly making mistakes. We're constantly trying to express ourselves and actualize our dreams.",
+         "You can create a checking account by clicking on the Create Account button on the bottom of the dashboard page.",
    },
    {
-      question: "What can I do with Material Tailwind?",
+      question: "Can I have automatic bank transfers?",
       answer:
-         "We're not always in the position that we want to be at. We're constantly growing. We're constantly making mistakes. We're constantly trying to express ourselves and actualize our dreams.",
+         "Yes, you can set up automatic bank transfers by clicking the Transfers button in the dashboard page.",
+   },
+   {
+      question: "How do I apply for a loan?",
+      answer:
+         "You can apply for a loan by clicking on the Apply for loan button on the bottom of the dashboard.",
+   },
+   {
+      question: "How do I apply for a credit card?",
+      answer:
+         "You can apply for a credit card by clicking on the Apply for a credit card button on the bottom of dashboard.",
+   },
+   {
+      question: "Why should I use ACU?",
+      answer:
+         "ACU is a great way to manage your finances and keep track of your money with a simplistic online website and application.",
+   },
+   {
+      question: "What if I want to delete a checkings/savings account?",
+      answer:
+         "You can delete a checkings/savings account by clicking on the Delete Account button on the bottom of the account information page.",
+   },
+   {
+      question: "How do I create a savings account?",
+      answer:
+         "You can create a savings account by clicking on the Create Account button on the bottom of the dashboard page.",
    },
 ];
