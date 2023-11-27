@@ -10,6 +10,7 @@ import ForgotPassword from "pages/forgot-password";
 import Apply from "pages/apply";
 import Create from "pages/create";
 import Profile from "pages/profile";
+import AccountInfoPage from "pages/account-info";
 
 import AuthLayout from "layouts/auth";
 import Login from "pages/login";
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
          {
             path: "user",
             element: <Profile />,
+         },
+         {
+            path: "account-info",
+            element: <AccountInfoPage />,
          },
       ],
    },

@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useAuth } from "context/auth";
-import Defualt_Profile_img from "images/Default_Profile.jpg";
+import Default_Profile_img from "images/Default_Profile.jpg";
 
 export default function RootLayout() {
    const user = useAuth();
@@ -30,7 +30,7 @@ export default function RootLayout() {
                         </Link>
 
                         <Link to="/user" type="button">
-                           <img src={Defualt_Profile_img} className="rounded-full w-9" />
+                           <img src={Default_Profile_img} className="rounded-full w-9" />
                         </Link>
                      </>
                   )}
