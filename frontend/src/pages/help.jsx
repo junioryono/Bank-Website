@@ -3,17 +3,16 @@ import React, { useState } from "react";
 // React component for FontAwesome icon
 const PlusIcon = () => (
    <span className="inline-flex items-center justify-center h-6 w-6 rounded-full bg-red-500 text-white mr-2">
-     <span className="flex items-center justify-center text-3xl mt-1.5 mb-3">&#43;</span>
+      <span className="flex items-center justify-center text-3xl mt-1.5 mb-3">&#43;</span>
    </span>
- );
- 
- 
- const MinusIcon = () => (
+);
+
+const MinusIcon = () => (
    <span className="inline-flex items-center justify-center h-6 w-6 rounded-full bg-black text-white mr-2">
-     <span className="flex items-center justify-center text-3xl mt-1.5 mb-3">&#8211;</span>
+      <span className="flex items-center justify-center text-3xl mt-1.5 mb-3">&#8211;</span>
    </span>
- );
- 
+);
+
 export default function Help() {
    const [openSection, setOpenSection] = useState(null);
 
@@ -32,7 +31,6 @@ export default function Help() {
                         onClick={() => toggleSection(index)}
                         className="border-slate-100 text-slate-700 rounded-t-1 group relative flex w-full cursor-pointer items-center border-b border-solid p-4 text-left font-semibold text-dark-500 transition-all ease-in"
                      >
-                        
                         <span className="ml-4">{/* Add space here */}</span>
                         {openSection === index ? <MinusIcon /> : <PlusIcon />}
                         <span>{faq.question}</span>
@@ -56,8 +54,7 @@ export default function Help() {
 const faqData = [
    {
       question: "How do I check my bank statement online? ",
-      answer:
-         "You can view your bank statements by clicking on the Dashboard tab on the left side of the screen.",
+      answer: "You can view your bank statements by clicking on the Dashboard tab on the left side of the screen.",
    },
    {
       question: "How do I create a checking account?",
@@ -66,13 +63,11 @@ const faqData = [
    },
    {
       question: "Can I have automatic bank transfers?",
-      answer:
-         "Yes, you can set up automatic bank transfers by clicking the Transfers button in the dashboard page.",
+      answer: "Yes, you can set up automatic bank transfers by clicking the Transfers button in the dashboard page.",
    },
    {
       question: "How do I apply for a loan?",
-      answer:
-         "You can apply for a loan by clicking on the Apply for loan button on the bottom of the dashboard.",
+      answer: "You can apply for a loan by clicking on the Apply for loan button on the bottom of the dashboard.",
    },
    {
       question: "How do I apply for a credit card?",
