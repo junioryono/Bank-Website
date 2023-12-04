@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useAuth } from "context/auth";
+import Defualt_Profile_img from "images/Default_Profile.jpg";
 
 export default function RootLayout() {
    const user = useAuth();
@@ -17,30 +18,46 @@ export default function RootLayout() {
                   <Link to="/help">Help</Link>
                   <Link to="/about-us">About Us</Link>
                   {!user ? (
+                     <></>
+                  ) : (
                      <>
-                        <Link to="/register">Register</Link>
                         <Link
-                           to="/login"
                            type="button"
+                           to="/dashboard"
                            className="flex justify-center items-center px-4 py-2 rounded-3xl text-text-primary bg-white"
                         >
-                           Login
+                           Dashboard
+                        </Link>
+
+                        <Link to="/user" type="button">
+                           <img src={Defualt_Profile_img} className="rounded-full w-9" />
                         </Link>
                      </>
-                  ) : (
-                     <Link
-                        type="button"
-                        to="/dashboard"
-                        className="flex justify-center items-center px-4 py-2 rounded-3xl text-text-primary bg-white"
-                     >
-                        Dashboard
-                     </Link>
                   )}
                </div>
             </div>
          </div>
-         <div className="h-1 bg-[#FFCD41]" />
+         <div className="py-[2px] bg-[#FFCD41]" />
          {/* END HEADER */}
+
+         {/* BEGIN NAVBAR */}
+         <nav className="border-b-2 bg-zinc-50">
+            <div className="container flex">
+               <Link to="/create/checkings" className="hover:bg-orange-50 hover:underline rounded-md px-16 py-3 m-0 p-8">
+                  Checking
+               </Link>
+               <Link to="/create/savings" className="hover:bg-orange-50 hover:underline rounded-md px-16 py-3">
+                  Savings
+               </Link>
+               <Link to="/apply/credit-card" className="hover:bg-orange-50 hover:underline rounded-md px-16 py-3">
+                  Credit Cards
+               </Link>
+               <Link to="/apply/loan" className="hover:bg-orange-50 hover:underline rounded-md px-16 py-3">
+                  Loans
+               </Link>
+            </div>
+         </nav>
+         {/* END NAVBAR */}
 
          {/* BEGIN CHILD CONTENT */}
          <div className="container flex flex-col mb-auto">
