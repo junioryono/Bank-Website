@@ -11,6 +11,7 @@ import Apply from "pages/apply";
 import Create from "pages/create";
 import Profile from "pages/profile";
 import AccountInfoPage from "pages/account-info";
+import NotFound from "pages/404-page";
 
 import AuthLayout from "layouts/auth";
 import Login from "pages/login";
@@ -61,6 +62,10 @@ const router = createBrowserRouter([
          {
             path: "account-info",
             element: <AccountInfoPage />,
+         },
+         {
+            path: "*",
+            element: <NotFound />,
          },
       ],
    },
