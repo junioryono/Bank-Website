@@ -6,7 +6,7 @@ export default function AccountInfoPage() {
    const navigate = useNavigate();
 
    return (
-      <div className="container max-w-4xl my-4 bg-gray-100 border border-gray-300 rounded-lg px-4">
+      <div className="container max-w-4xl my-4 bg-gray-200 border border-gray-300 rounded-lg px-4">
          {user ? (
             <ul role="list" class="divide-y divide-gray-100 pb-5">
                <li class="flex justify-between gap-x-6 py-5">
