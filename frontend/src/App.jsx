@@ -40,6 +40,10 @@ const router = createBrowserRouter([
             element: <Dashboard />,
          },
          {
+            path: "dashboard/account/:id",
+            element: <AccountInfoPage />,
+         },
+         {
             path: "apply/credit-card",
             element: <Apply type="Credit Card" />,
          },
