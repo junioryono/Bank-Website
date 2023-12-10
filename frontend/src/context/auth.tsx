@@ -63,7 +63,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
    const [user, setUser] = useState<User | null | undefined>(undefined);
 
    useEffect(() => {
-      const enableTestUser = false;
+      const enableTestUser = true;
 
       if (enableTestUser) {
          const transaction: Transaction = {
