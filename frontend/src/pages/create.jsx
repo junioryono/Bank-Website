@@ -2,24 +2,48 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "context/auth";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
-// Type would either be "Checkings" or "Savings"
 export default function Create({ type }) {
+  
    const { user } = useAuth();
+   const [formData, setFormData] = useState({
+      firstName: "",
+      lastName: "",
+      email: "",
+      country: "United States",
+      streetAddress: "",
+      city: "",
+      region: "",
+      postalCode: "",
+   });
+
+   const [formError, setFormError] = useState(false);
+
+   const handleInputChange = (e) => {
+      const { name, value } = e.target;
+      setFormData({ ...formData, [name]: value });
+   };
+
    const navigate = useNavigate();
 
-   useEffect(() => {
-      if (user === null) {
-         navigate("/login?redirect=/create/" + (type === "Checkings" ? "checkings" : "savings"));
-      }
-   }, [user]);
+   const handleSubmit = (e) => {
+      e.preventDefault();
 
-   if (!user) {
-      return null;
-   }
+      for (const key in formData) {
+         if (formData[key] === "") {
+            setFormError(true);
+            return;
+         }
+      }
+
+      navigate("/form-val-check");
+
+      console.log("Form submitted:", formData);
+   };
 
    return (
-      <form>
+      <form onSubmit={handleSubmit}>
          <div className="container max-w-4xl my-10">
             <div className="border-b border-gray-900/10">
                <h1 className="text-3xl font-semibold leading-7 py-6 text-gray-900">Create a {type} Account</h1>
@@ -37,10 +61,11 @@ export default function Create({ type }) {
                      <div className="mt-2">
                         <input
                            type="text"
-                           name="first-name"
+                           name="firstName"
                            id="first-name"
                            autoComplete="given-name"
                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
+                           onChange={handleInputChange}
                         />
                      </div>
                   </div>
@@ -52,10 +77,11 @@ export default function Create({ type }) {
                      <div className="mt-2">
                         <input
                            type="text"
-                           name="last-name"
+                           name="lastName"
                            id="last-name"
                            autoComplete="family-name"
                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
+                           onChange={handleInputChange}
                         />
                      </div>
                   </div>
@@ -71,6 +97,7 @@ export default function Create({ type }) {
                            type="email"
                            autoComplete="email"
                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
+                           onChange={handleInputChange}
                         />
                      </div>
                   </div>
@@ -85,6 +112,7 @@ export default function Create({ type }) {
                            name="country"
                            autoComplete="country-name"
                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset sm:max-w-xs sm:text-sm sm:leading-6"
+                           onChange={handleInputChange}
                         >
                            <option>United States</option>
                            <option>Canada</option>
@@ -100,10 +128,11 @@ export default function Create({ type }) {
                      <div className="mt-2">
                         <input
                            type="text"
-                           name="street-address"
+                           name="streetAddress"
                            id="street-address"
                            autoComplete="street-address"
                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
+                           onChange={handleInputChange}
                         />
                      </div>
                   </div>
@@ -119,6 +148,7 @@ export default function Create({ type }) {
                            id="city"
                            autoComplete="address-level2"
                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
+                           onChange={handleInputChange}
                         />
                      </div>
                   </div>
@@ -134,6 +164,7 @@ export default function Create({ type }) {
                            id="region"
                            autoComplete="address-level1"
                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
+                           onChange={handleInputChange}
                         />
                      </div>
                   </div>
@@ -145,15 +176,19 @@ export default function Create({ type }) {
                      <div className="mt-2">
                         <input
                            type="text"
-                           name="postal-code"
+                           name="postalCode"
                            id="postal-code"
                            autoComplete="postal-code"
                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
+                           onChange={handleInputChange}
                         />
                      </div>
                   </div>
                </div>
             </div>
+
+            {/* Error message for incomplete form */}
+            {formError && <p className="text-red-500 text-sm mt-2">Please fill out all fields of information.</p>}
 
             <div className="mt-6 flex items-center justify-end gap-x-6 pb-7">
                <button type="button" className="text-sm font-semibold leading-6 text-gray-900">
