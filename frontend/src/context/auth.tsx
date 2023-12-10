@@ -129,6 +129,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
          console.log("there was a server issue");
          alert("An Error Occured");
       }
+      return response.status;
    };
 
    const logoutUser = () => {

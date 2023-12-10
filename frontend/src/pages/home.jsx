@@ -6,7 +6,6 @@ import dashboardImage from "images/dashboard_screenshot.png";
 
 export default function Home() {
    const { user } = useAuth();
-   console.log(user);
    const { loginUser } = useAuth();
    const navigate = useNavigate();
 
