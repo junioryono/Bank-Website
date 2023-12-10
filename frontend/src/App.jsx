@@ -12,6 +12,7 @@ import Create from "pages/create";
 import Profile from "pages/profile";
 import AccountInfoPage from "pages/account-info";
 import NotFound from "pages/404-page";
+import FormValidationPage from "./pages/form-val-check";
 
 import AuthLayout from "layouts/auth";
 import Login from "pages/login";
@@ -70,6 +71,10 @@ const router = createBrowserRouter([
          {
             path: "*",
             element: <NotFound />,
+         },
+         {
+            path: "form-val-check",
+            element: <FormValidationPage />,
          },
       ],
    },
