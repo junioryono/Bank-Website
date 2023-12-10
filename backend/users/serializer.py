@@ -34,10 +34,15 @@ class RegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(
         write_only=True, required=True, validators=[validate_password])
     password2 = serializers.CharField(write_only=True, required=True)
+    firstName = serializers.CharField(write_only=True, required=True)
+    lastName = serializers.CharField(write_only=True, required=True)
+    address = serializers.CharField(write_only=True, required=True)
+    salary = serializers.CharField(write_only=True, required=True)
 
     class Meta:
         model = User
-        fields = ('email', 'username', 'password', 'password2')
+        fields = ('email', 'username', 'password',
+                  'password2', 'firstName', 'lastName', 'address', 'salary')
 
     def validate(self, attrs):
         if attrs['password'] != attrs['password2']:
@@ -49,9 +54,13 @@ class RegisterSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         user = User.objects.create(
             username=validated_data['username'],
-            email=validated_data['email']
+            email=validated_data['email'],
 
         )
+        user.profile.firstName = validated_data['firstName']
+        user.profile.lastName = validated_data['lastName']
+        user.profile.address = validated_data['address']
+        user.profile.salary = validated_data['salary']
 
         user.set_password(validated_data['password'])
         user.save()

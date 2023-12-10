@@ -108,7 +108,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       return response.status;
    };
 
-   const registerUser = async (email: string, username: string, password: string, password2: string) => {
+   const registerUser = async (
+      email: string,
+      username: string,
+      password: string,
+      password2: string,
+      firstName: string,
+      lastName: string,
+      address: string,
+      salary: string,
+   ) => {
       const response = await fetch("http://127.0.0.1:8000/users/register/", {
          method: "POST",
          headers: {
@@ -119,8 +128,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             username,
             password,
             password2,
+            firstName,
+            lastName,
+            address,
+            salary,
          }),
       });
+      const data = await response.json();
+      console.log(data);
       if (response.status === 201) {
          // navigate("/login");
          alert("Registration Successful, Login Now");
