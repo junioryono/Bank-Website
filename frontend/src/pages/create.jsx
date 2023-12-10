@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 export default function Create({ type }) {
-  
    const { user } = useAuth();
+   const navigate = useNavigate();
    const [formData, setFormData] = useState({
       firstName: "",
       lastName: "",
@@ -25,8 +25,6 @@ export default function Create({ type }) {
       setFormData({ ...formData, [name]: value });
    };
 
-   const navigate = useNavigate();
-
    const handleSubmit = (e) => {
       e.preventDefault();
 
@@ -41,6 +39,20 @@ export default function Create({ type }) {
 
       console.log("Form submitted:", formData);
    };
+
+   const handleCancel = () => {
+      navigate(-1); // Go back to the previous page
+   };
+
+   useEffect(() => {
+      if (!user) {
+         navigate("/login?redirect=/apply/" + (type === "Checkings" ? "checkings" : "savings"));
+      }
+   }, [user, navigate]);
+
+   if (!user) {
+      return null;
+   }
 
    return (
       <form onSubmit={handleSubmit}>
@@ -191,7 +203,7 @@ export default function Create({ type }) {
             {formError && <p className="text-red-500 text-sm mt-2">Please fill out all fields of information.</p>}
 
             <div className="mt-6 flex items-center justify-end gap-x-6 pb-7">
-               <button type="button" className="text-sm font-semibold leading-6 text-gray-900">
+               <button type="button" className="text-sm font-semibold leading-6 text-gray-900" onClick={handleCancel}>
                   Cancel
                </button>
                <button
