@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 // Type would either be "Credit Card" or "Loan"
 export default function Apply({ type }) {
-   const user = useAuth();
+   const { user } = useAuth();
    const navigate = useNavigate();
 
    useEffect(() => {

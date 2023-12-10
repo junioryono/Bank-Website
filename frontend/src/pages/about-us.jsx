@@ -3,7 +3,7 @@ import { useAuth } from "context/auth";
 import bankImage from "images/sdsu_campus.jpg";
 
 export default function AboutUs() {
-   const user = useAuth();
+   const { user } = useAuth();
    return (
       <div className="bg-orange-50 mt-2 px-5 pt-14 pb-16">
          <div className="flex flex-col md:flex-row justify-center items-center">

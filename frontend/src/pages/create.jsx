@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 export default function Create({ type }) {
+  
+   const { user } = useAuth();
    const [formData, setFormData] = useState({
       firstName: "",
       lastName: "",

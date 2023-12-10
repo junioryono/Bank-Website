@@ -6,6 +6,9 @@ certifi==2023.7.22
 charset-normalizer==3.3.2
 colorama==0.4.6
 Django==4.2.7
+djangorestframework==3.14.0
+djangorestframework-simplejwt==5.3.1
+django-cors-headers==4.3.1
 django-db==0.0.7
 future==0.18.3
 idna==3.4
@@ -13,6 +16,8 @@ install-jdk==1.0.2
 jsonschema==4.19.2
 jsonschema-specifications==2023.7.1
 macholib==1.16.3
+psycopg==3.1.14
+psycopg2==2.9.9
 PyMySQL==1.1.0
 PyYAML==6.0.1
 referencing==0.30.2

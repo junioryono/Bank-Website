@@ -4,7 +4,7 @@ import { useAuth } from "context/auth";
 import Default_Profile_img from "images/Default_Profile.jpg";
 
 export default function RootLayout() {
-   const user = useAuth();
+   const { user } = useAuth();
 
    return (
       <div className="flex flex-col h-screen text-text-primary">

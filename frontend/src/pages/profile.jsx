@@ -3,13 +3,20 @@ import { useNavigate } from "react-router-dom";
 import Default_Profile_img from "images/Default_Profile.jpg";
 
 export default function profile() {
-   const user = useAuth();
+   const { user } = useAuth();
+   const { logoutUser } = useAuth();
    const navigate = useNavigate();
+
+   const logout = () => {
+      logoutUser();
+      navigate("/");
+   };
 
    return (
       <>
          {user ? (
             <>
+               {console.log(user)}
                <div className="flex justify-center">
                   <img src={Default_Profile_img} className="rounded-full w-60 mt-10" />
                </div>
@@ -22,13 +29,13 @@ export default function profile() {
                      <dl>
                         <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                            <dt className="text-sm font-medium text-gray-500">Full name</dt>
-                           <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{user.name}</dd>
+                           <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                              {user.firstName + " " + user.lastName}
+                           </dd>
                         </div>
                         <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                            <dt className="text-sm font-medium text-gray-500">Address</dt>
-                           <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                              1234 Aztec street San Dieg, CA 92312
-                           </dd>
+                           <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{user.address}</dd>
                         </div>
                         <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                            <dt className="text-sm font-medium text-gray-500">Email address</dt>
@@ -36,10 +43,19 @@ export default function profile() {
                         </div>
                         <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                            <dt className="text-sm font-medium text-gray-500">Salary</dt>
-                           <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">$10,000</dd>
+                           <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{user.salary}</dd>
                         </div>
                      </dl>
                   </div>
+               </div>
+               <div className="flex justify-center">
+                  <button
+                     className="bg-red-600  hover:bg-red-700 text-white 
+                  font-bold mt-3 py-2 px-10 rounded-full focus:outline-none focus:shadow-outline"
+                     onClick={logout}
+                  >
+                     Log Out
+                  </button>
                </div>
             </>
          ) : (

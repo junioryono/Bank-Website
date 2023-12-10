@@ -4,9 +4,26 @@ import { useAuth } from "context/auth";
 import { Link } from "react-router-dom";
 
 export default function Login() {
-   const user = useAuth();
+   const { user } = useAuth();
+   const { loginUser } = useAuth();
    const navigate = useNavigate();
    const queryParams = useMemo(() => new URLSearchParams(window.location.search), []);
+
+   const handleSubmit = (e) => {
+      e.preventDefault();
+      const email = e.target.email.value;
+      const password = e.target.password.value;
+      if (email.length > 0) {
+         loginUser(email, password).then((res) => {
+            if (res === 200) {
+               alert("Login Successful");
+               navigate("/");
+            }
+         });
+      }
+      console.log(email);
+      console.log(password);
+   };
 
    useEffect(() => {
       if (user) {
@@ -34,7 +51,7 @@ export default function Login() {
          </div>
 
          <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-            <form className="space-y-6" action="#" method="POST">
+            <form className="space-y-6" action="#" method="POST" onSubmit={handleSubmit}>
                <div>
                   <label for="email" className="block text-sm font-medium leading-6 text-gray-900">
                      Email address

@@ -4,9 +4,26 @@ import { useAuth } from "context/auth";
 import { Link } from "react-router-dom";
 
 export default function Register() {
-   const user = useAuth();
+   const { user } = useAuth();
+   const { registerUser } = useAuth();
    const navigate = useNavigate();
    const queryParams = useMemo(() => new URLSearchParams(window.location.search), []);
+
+   const handleSubmit = async (e) => {
+      e.preventDefault();
+
+      const userName = e.target.userName.value;
+      const email = e.target.email.value;
+      const password = e.target.password.value;
+      const retypePassword = e.target.retypePassword.value;
+
+      console.log(email, userName, password, retypePassword);
+      registerUser(email, userName, password, retypePassword).then((res) => {
+         if (res === 201) {
+            navigate("/login");
+         }
+      });
+   };
 
    useEffect(() => {
       if (user) {
@@ -34,15 +51,15 @@ export default function Register() {
          </div>
 
          <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-            <form className="space-y-6" action="#" method="POST">
+            <form className="space-y-6" action="#" method="POST" onSubmit={handleSubmit}>
                <div>
                   <label for="name" className="block text-sm font-medium text-gray-900">
                      Name
                   </label>
                   <div className="mt-2">
                      <input
-                        id="name"
-                        name="name"
+                        id="userName"
+                        name="userName"
                         type="text"
                         required
                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm"
@@ -86,8 +103,8 @@ export default function Register() {
                   </label>
                   <div className="mt-2">
                      <input
-                        id="retype-password"
-                        name="retype-password"
+                        id="retypePassword"
+                        name="retypePassword"
                         type="password"
                         required
                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm"
