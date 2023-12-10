@@ -1,9 +1,31 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import React, { useContext } from "react";
 import { useAuth } from "context/auth";
+
 import dashboardImage from "images/dashboard_screenshot.png";
 
 export default function Home() {
-   const user = useAuth();
+   const { user } = useAuth();
+   console.log(user);
+   const { loginUser } = useAuth();
+   const navigate = useNavigate();
+
+   const handleSubmit = (e) => {
+      e.preventDefault();
+      const email = e.target.email.value;
+      const password = e.target.password.value;
+      let response = 0;
+      if (email.length > 0) {
+         loginUser(email, password).then((res) => {
+            if (res === 200) {
+               alert("Login Successful");
+               navigate("/");
+            }
+         });
+      }
+      console.log(email);
+      console.log(password);
+   };
    return (
       <>
          {/* Banner */}
@@ -11,15 +33,19 @@ export default function Home() {
             <div className="flex px-16 py-24">
                {!user ? (
                   <div className="w-full max-w-xs">
-                     <form className="bg-white shadow-2xl rounded-lg px-4 pt-6 pb-8 mb-4" method="POST">
+                     <form
+                        onSubmit={handleSubmit}
+                        className="bg-white shadow-2xl rounded-lg px-4 pt-6 pb-8 mb-4"
+                        method="POST"
+                     >
                         <h1 className=" text-2xl font-light">Hello</h1>
                         <h2 className="font-light pb-3">Sign on to manage your accounts.</h2>
                         <div className="mb-10">
                            <input
                               className="appearance-none border-b-2 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline hover:border-b-orange-600"
-                              id="username"
+                              id="email"
                               type="text"
-                              placeholder="Username"
+                              placeholder="email"
                            />
                         </div>
                         <div className="mb-12">
@@ -53,7 +79,7 @@ export default function Home() {
                ) : (
                   <div className="w-full max-w-xs">
                      <form className="bg-white shadow-2xl rounded-lg px-4 pt-8 pb-8 mb-4">
-                        <h1 className=" text-2xl font-light">Welcome back, {user.name}!</h1>
+                        <h1 className=" text-2xl font-light">Welcome back, {user.firstName}!</h1>
                         <h2 className="font-light pt-2">What can we help you with today?</h2>
                      </form>
                   </div>

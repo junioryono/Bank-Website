@@ -1,4 +1,5 @@
 from users.models import User
+from users.models import Profile
 from django.contrib.auth.password_validation import validate_password
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework import serializers
@@ -18,7 +19,8 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         token = super().get_token(user)
 
         # These are claims, you can add custom claims
-        token['full_name'] = user.profile.full_name
+        token['firstName'] = user.profile.firstName
+        token['lastName'] = user.profile.lastName
         token['address'] = user.profile.address
         token['username'] = user.username
         token['email'] = user.email

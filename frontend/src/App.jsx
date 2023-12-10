@@ -1,5 +1,6 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { AuthProvider } from "context/auth";
+import { UserAuthProvider } from "context/userAuth";
 
 import RootLayout from "layouts/root";
 import Home from "pages/home";
@@ -83,7 +84,9 @@ const router = createBrowserRouter([
 export default function App() {
    return (
       <AuthProvider>
-         <RouterProvider router={router} fallbackElement={<p>Initial Load...</p>} />
+         <UserAuthProvider>
+            <RouterProvider router={router} fallbackElement={<p>Initial Load...</p>} />
+         </UserAuthProvider>
       </AuthProvider>
    );
 }

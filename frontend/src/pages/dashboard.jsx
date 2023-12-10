@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { formatNumberWithCommas } from "utilities/formatting";
 
 export default function Dashboard() {
-   const user = useAuth();
+   const { user } = useAuth();
    const navigate = useNavigate();
 
    useEffect(() => {

@@ -4,7 +4,7 @@ import { useAuth } from "context/auth";
 import { Link } from "react-router-dom";
 
 export default function ForgotPassword() {
-   const user = useAuth();
+   const { user } = useAuth();
    const navigate = useNavigate();
 
    useEffect(() => {

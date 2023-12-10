@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 // Type would either be "Checkings" or "Savings"
 export default function Create({ type }) {
-   const user = useAuth();
+   const { user } = useAuth();
    const navigate = useNavigate();
 
    useEffect(() => {
