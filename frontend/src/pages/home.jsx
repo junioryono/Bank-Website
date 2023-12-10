@@ -44,7 +44,7 @@ export default function Home() {
                               className="appearance-none border-b-2 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline hover:border-b-orange-600"
                               id="email"
                               type="text"
-                              placeholder="email"
+                              placeholder="Email"
                            />
                         </div>
                         <div className="mb-12">
