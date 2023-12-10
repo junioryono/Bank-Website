@@ -12,13 +12,17 @@ export default function Register() {
    const handleSubmit = async (e) => {
       e.preventDefault();
 
-      const userName = e.target.userName.value;
       const email = e.target.email.value;
+      const userName = e.target.userName.value;
       const password = e.target.password.value;
       const retypePassword = e.target.retypePassword.value;
+      const firstName = e.target.firstName.value;
+      const lastName = e.target.lastName.value;
+      const address = e.target.address.value;
+      const salary = e.target.salary.value;
 
-      console.log(email, userName, password, retypePassword);
-      registerUser(email, userName, password, retypePassword).then((res) => {
+      console.log(email, userName, password, retypePassword, firstName, lastName, address, salary);
+      registerUser(email, userName, password, retypePassword, firstName, lastName, address, salary).then((res) => {
          if (res === 201) {
             navigate("/login");
          }
@@ -36,7 +40,7 @@ export default function Register() {
    }
 
    return (
-      <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+      <div className="flex min-h-full flex-col justify-center mt-32 px-6 py-12 lg:px-8">
          <div className="sm:mx-auto sm:w-full sm:max-w-sm">
             <Link
                to="/"
@@ -54,7 +58,63 @@ export default function Register() {
             <form className="space-y-6" action="#" method="POST" onSubmit={handleSubmit}>
                <div>
                   <label for="name" className="block text-sm font-medium text-gray-900">
-                     Name
+                     First Name
+                  </label>
+                  <div className="mt-2">
+                     <input
+                        id="firstName"
+                        name="firstName"
+                        type="text"
+                        required
+                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm"
+                     />
+                  </div>
+               </div>
+               <div>
+                  <label for="name" className="block text-sm font-medium text-gray-900">
+                     Last Name
+                  </label>
+                  <div className="mt-2">
+                     <input
+                        id="lastName"
+                        name="lastName"
+                        type="text"
+                        required
+                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm"
+                     />
+                  </div>
+               </div>
+               <div>
+                  <label for="name" className="block text-sm font-medium text-gray-900">
+                     Address
+                  </label>
+                  <div className="mt-2">
+                     <input
+                        id="address"
+                        name="address"
+                        type="text"
+                        required
+                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm"
+                     />
+                  </div>
+               </div>
+               <div>
+                  <label for="name" className="block text-sm font-medium text-gray-900">
+                     Salary
+                  </label>
+                  <div className="mt-2">
+                     <input
+                        id="salary"
+                        name="salary"
+                        type="text"
+                        required
+                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm"
+                     />
+                  </div>
+               </div>
+               <div>
+                  <label for="name" className="block text-sm font-medium text-gray-900">
+                     User Name
                   </label>
                   <div className="mt-2">
                      <input
