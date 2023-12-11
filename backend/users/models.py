@@ -24,21 +24,25 @@ class Profile(models.Model):
     image_path = models.CharField(max_length=255, default="default.jpg")
 
 
-acountTypes = (('checkings', 'Checkings'),
-               ('savings', 'Savings'), ('credit card', 'Credit Card'), ('loan', 'Loan'))
+accountTypes = (('Checkings', 'Checkings'),
+                ('Savings', 'Savings'), ('Credit Card', 'Credit Card'), ('Loan', 'Loan'))
 
 
 class account(models.Model):
+
+    def random_string():
+        return str(random.randint(1000000, 9999999))
+
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     accountNumber = models.CharField(
-        max_length=1000, default=random.randint(1000000, 9999999))
+        max_length=1000, default=random_string)
     balance = models.CharField(max_length=1000, default='0')
     overdraftLimit = models.CharField(max_length=1000, default=1000)
-    acountType = models.CharField(choices=acountTypes, default='checkings')
+    accountType = models.CharField(choices=accountTypes, default='Savings')
     interestRate = models.CharField(max_length=1000, default=0.05)
     creditLimit = models.CharField(max_length=1000, default=1000)
     minimumPayment = models.CharField(max_length=1000, default=0)
-    paymentDueDate = models.DateTimeField(default=0)
+    paymentDueDate = models.CharField(max_length=1000, default=0)
 
 
 def create_user_profile(sender, instance, created, **kwargs):

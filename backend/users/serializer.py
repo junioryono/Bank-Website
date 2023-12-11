@@ -35,7 +35,7 @@ class accountsSerializer(serializers.ModelSerializer):
     class Meta:
         model = account
         # fields = ('__all__')
-        fields = ('user', 'accountNumber', 'balance', 'overdraftLimit', 'acountType',
+        fields = ('user', 'accountNumber', 'balance', 'overdraftLimit', 'accountType',
                   'interestRate', 'creditLimit', 'minimumPayment', 'paymentDueDate')
 
 
