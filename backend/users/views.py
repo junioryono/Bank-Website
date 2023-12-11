@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-from users.models import User
+from users.models import User, account
 
-from users.serializer import MyTokenObtainPairSerializer, RegisterSerializer
+from users.serializer import MyTokenObtainPairSerializer, RegisterSerializer, accountsSerializer
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -15,6 +15,11 @@ from rest_framework.decorators import api_view, permission_classes
 
 class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
+
+
+class AccountsView(generics.ListCreateAPIView):
+    serializer_class = accountsSerializer
+    queryset = account.objects.all()
 
 
 class RegisterView(generics.CreateAPIView):

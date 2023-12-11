@@ -9,6 +9,8 @@ urlpatterns = [
     path('token/', views.MyTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('register/', views.RegisterView.as_view(), name='auth_register'),
+    path('acounts/', views.AccountsView.as_view(), name='accounts'),
+    # path('acounts/<int:pk>', views.AccountView.as_view(), name='accounts'),
     path('test/', views.testEndPoint, name='test'),
     path('', views.getRoutes),
 ]
