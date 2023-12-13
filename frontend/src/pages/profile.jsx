@@ -16,7 +16,6 @@ export default function profile() {
       <>
          {user ? (
             <>
-               {console.log(user)}
                <div className="flex justify-center">
                   <img src={Default_Profile_img} className="rounded-full w-60 mt-10" />
                </div>

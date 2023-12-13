@@ -21,7 +21,6 @@ export default function Register() {
       const address = e.target.address.value;
       const salary = e.target.salary.value;
 
-      console.log(email, userName, password, retypePassword, firstName, lastName, address, salary);
       registerUser(email, userName, password, retypePassword, firstName, lastName, address, salary).then((res) => {
          if (res === 201) {
             navigate("/login");

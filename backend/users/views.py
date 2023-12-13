@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-from users.models import User, account
+from users.models import User, Account
 
-from users.serializer import MyTokenObtainPairSerializer, RegisterSerializer, accountsSerializer
+from users.serializer import MyTokenObtainPairSerializer, RegisterSerializer, AccountsSerializer
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -17,16 +17,22 @@ class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
 
 
-class AccountsView(generics.ListCreateAPIView):
-    serializer_class = accountsSerializer
-    queryset = account.objects.all()
-
-
 class RegisterView(generics.CreateAPIView):
     queryset = User.objects.all()
     permission_classes = (AllowAny,)
     serializer_class = RegisterSerializer
 
+class AccountsView(generics.ListCreateAPIView):
+    serializer_class = AccountsSerializer
+    queryset = Account.objects.all()
+
+class AccountCreateView(generics.CreateAPIView):
+    queryset = Account.objects.all()
+    serializer_class = AccountsSerializer
+    permission_classes = [IsAuthenticated]
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
 
 # Get All Routes
 

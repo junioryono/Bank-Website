@@ -10,9 +10,14 @@ export default function RootLayout() {
       <div className="flex flex-col h-screen text-text-primary">
          {/* BEGIN HEADER */}
          <div className="text-white bg-[#D71E28]">
-            <div className="container flex justify-between pt-4 pb-3">
-               <Link to="/" className="text-3xl">
+            <div className="container flex justify-between pt-4 pb-3 px-4">
+               {/* For Desktop */}
+               <Link to="/" className="text-3xl hidden md:block">
                   Aztec Credit Union
+               </Link>
+               {/* For Mobile */}
+               <Link to="/" className="text-3xl md:hidden">
+                  ACU
                </Link>
                <div className="flex items-center gap-6">
                   <Link to="/help">Help</Link>
@@ -43,16 +48,28 @@ export default function RootLayout() {
          {/* BEGIN NAVBAR */}
          <nav className="border-b-2 bg-zinc-50">
             <div className="container flex">
-               <Link to="/create/checkings" className="hover:bg-orange-50 hover:underline rounded-md px-16 py-3 m-0 p-8">
+               <Link
+                  to="/create/checkings"
+                  className="hover:bg-orange-50 hover:underline rounded-md w-1/4 max-w-[165px] py-3 text-center"
+               >
                   Checking
                </Link>
-               <Link to="/create/savings" className="hover:bg-orange-50 hover:underline rounded-md px-16 py-3">
+               <Link
+                  to="/create/savings"
+                  className="hover:bg-orange-50 hover:underline rounded-md w-1/4 max-w-[165px] py-3 text-center"
+               >
                   Savings
                </Link>
-               <Link to="/apply/credit-card" className="hover:bg-orange-50 hover:underline rounded-md px-16 py-3">
+               <Link
+                  to="/apply/credit-card"
+                  className="hover:bg-orange-50 hover:underline rounded-md w-1/4 max-w-[165px] py-3 text-center"
+               >
                   Credit Cards
                </Link>
-               <Link to="/apply/loan" className="hover:bg-orange-50 hover:underline rounded-md px-16 py-3">
+               <Link
+                  to="/apply/loan"
+                  className="hover:bg-orange-50 hover:underline rounded-md w-1/4 max-w-[165px] py-3 text-center"
+               >
                   Loans
                </Link>
             </div>

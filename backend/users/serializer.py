@@ -1,4 +1,4 @@
-from users.models import User, account
+from users.models import User, Account
 from users.models import Profile
 from django.contrib.auth.password_validation import validate_password
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
@@ -30,13 +30,11 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         return token
 
 
-class accountsSerializer(serializers.ModelSerializer):
-
+class AccountsSerializer(serializers.ModelSerializer):
     class Meta:
-        model = account
-        # fields = ('__all__')
-        fields = ('user', 'accountNumber', 'balance', 'overdraftLimit', 'accountType',
-                  'interestRate', 'creditLimit', 'minimumPayment', 'paymentDueDate')
+        model = Account
+        fields = '__all__'
+        read_only_fields = ('user',)  # Prevents user from being manually set
 
 
 class RegisterSerializer(serializers.ModelSerializer):
