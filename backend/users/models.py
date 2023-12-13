@@ -28,14 +28,12 @@ accountTypes = (('Checkings', 'Checkings'),
                 ('Savings', 'Savings'), ('Credit Card', 'Credit Card'), ('Loan', 'Loan'))
 
 
-class account(models.Model):
-
+class Account(models.Model):
     def random_string():
         return str(random.randint(1000000, 9999999))
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    accountNumber = models.CharField(
-        max_length=1000, default=random_string)
+    accountNumber = models.CharField(max_length=1000, default=random_string, unique=True)
     balance = models.CharField(max_length=1000, default='0')
     overdraftLimit = models.CharField(max_length=1000, default=1000)
     accountType = models.CharField(choices=accountTypes, default='Savings')

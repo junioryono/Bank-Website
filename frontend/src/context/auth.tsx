@@ -9,7 +9,7 @@ type Transaction = {
 };
 
 type CheckingsAccount = {
-   type: "checkings";
+   accountType: "checkings";
    accountNumber: string;
    balance: number;
    transactions: Transaction[];
@@ -17,7 +17,7 @@ type CheckingsAccount = {
 };
 
 type SavingsAccount = {
-   type: "savings";
+   accountType: "savings";
    accountNumber: string;
    balance: number;
    transactions: Transaction[];
@@ -25,7 +25,7 @@ type SavingsAccount = {
 };
 
 type CreditCardAccount = {
-   type: "credit card";
+   accountType: "credit card";
    accountNumber: string;
    balance: number;
    transactions: Transaction[];
@@ -36,7 +36,7 @@ type CreditCardAccount = {
 };
 
 type LoanAccount = {
-   type: "loan";
+   accountType: "loan";
    accountNumber: string;
    balance: number;
    transactions: Transaction[];
@@ -52,7 +52,6 @@ type User = {
    email: string;
    address: string;
    // salary: string;
-   accounts: Account[];
 };
 
 type contextData = {
@@ -71,8 +70,6 @@ export const useAuth = () => {
 };
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-   // const [user, setUser] = useState<User | null | undefined>(undefined);
-
    const [authTokens, setAuthTokens] = useState(() =>
       localStorage.getItem("authTokens") ? JSON.parse(localStorage.getItem("authTokens") || "{}") : null,
    );
@@ -96,14 +93,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       console.log(data);
 
       if (response.status === 200) {
-         console.log("Logged In");
          setAuthTokens(data);
          setUser(jwtDecode(data.access));
          localStorage.setItem("authTokens", JSON.stringify(data));
       } else {
-         console.log(response.status);
-         console.log("there was a server issue");
-         alert("Username or passowrd does not exists");
+         alert("Username or password does not exists");
       }
       return response.status;
    };
@@ -152,7 +146,49 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setUser(null);
       localStorage.removeItem("authTokens");
       // history.push("/login");
-      alert("YOu have been logged out...");
+   };
+
+   const fetchAccounts = async () => {
+      if (authTokens) {
+         const response = await fetch("http://127.0.0.1:8000/users/accounts/", {
+            method: "GET",
+            headers: {
+               Authorization: `Bearer ${authTokens.access}`,
+            },
+         });
+
+         if (!response.ok) {
+            return null;
+         }
+
+         const data = await response.json();
+         console.log(data);
+
+         return data;
+      }
+   };
+
+   const createAccount = async (accountType: any, balance: any, overdraftLimit: any, interestRate: any) => {
+      console.log(authTokens.access);
+      const response = await fetch("http://127.0.0.1:8000/users/account/create/", {
+         method: "POST",
+         headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${authTokens?.access}`,
+         },
+         body: JSON.stringify({
+            balance,
+            overdraftLimit,
+            accountType,
+            interestRate,
+         }),
+      }).then((res) => res.json());
+
+      if (response && response.id) {
+         return !!response;
+      }
+
+      return false;
    };
 
    const contextData = {
@@ -163,6 +199,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       registerUser,
       loginUser,
       logoutUser,
+      fetchAccounts,
+      createAccount,
    };
 
    useEffect(() => {
@@ -170,62 +208,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
          setUser(jwtDecode(authTokens.access));
       }
    }, [authTokens]);
-
-   // useEffect(() => {
-   //    const enableTestUser = false;
-
-   //    if (enableTestUser) {
-   //       const transaction: Transaction = {
-   //          status: "completed",
-   //          date: new Date(),
-   //          amount: 1000,
-   //          description: "Test transaction",
-   //       };
-
-   //       setUser({
-   //          id: "123",
-   //          email: "test@gmail.com",
-   //          name: "Test User",
-   //          accounts: [
-   //             {
-   //                type: "checkings",
-   //                accountNumber: "123456789",
-   //                balance: 10000,
-   //                transactions: [transaction, transaction, transaction],
-   //                overdraftLimit: 1000,
-   //             },
-   //             {
-   //                type: "savings",
-   //                accountNumber: "987654321",
-   //                balance: 10000,
-   //                transactions: [transaction, transaction, transaction],
-   //                interestRate: 0.01,
-   //             },
-   //             {
-   //                type: "credit card",
-   //                accountNumber: "123123123",
-   //                balance: 10000,
-   //                transactions: [transaction, transaction, transaction],
-   //                creditLimit: 10000,
-   //                interestRate: 0.1,
-   //                minimumPayment: 100,
-   //                paymentDueDate: new Date(),
-   //             },
-   //             {
-   //                type: "loan",
-   //                accountNumber: "321321321",
-   //                balance: 10000,
-   //                transactions: [transaction, transaction, transaction],
-   //                interestRate: 0.1,
-   //                minimumPayment: 100,
-   //                paymentDueDate: new Date(),
-   //             },
-   //          ],
-   //       });
-   //    } else {
-   //       setUser(null);
-   //    }
-   // }, []);
 
    return <AuthContext.Provider value={contextData}>{children}</AuthContext.Provider>;
 }

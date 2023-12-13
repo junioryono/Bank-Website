@@ -17,5 +17,6 @@ dist-ssr
 .DS_Store
 
 __pycache__
+migrations
 
 data

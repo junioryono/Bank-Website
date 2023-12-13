@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 export default function Create({ type }) {
-   const { user } = useAuth();
+   const { user, createAccount } = useAuth();
    const navigate = useNavigate();
    const [formData, setFormData] = useState({
       balance: "",
@@ -19,44 +19,23 @@ export default function Create({ type }) {
       setFormData({ ...formData, [name]: value });
    };
 
-   const id = user.user_id;
    const creatAccount = async (e) => {
       const balance = e.target.balance.value;
       const overdraftLimit = e.target.overdraftLimit.value;
       let interestRate = 0;
-      const accountType = type;
-      const user = id;
 
       if (type === "Savings") {
          interestRate = e.target.interestRate.value;
       }
 
-      const response = await fetch("http://127.0.0.1:8000/users/accounts/", {
-         method: "POST",
-         headers: {
-            "Content-Type": "application/json",
-         },
-         body: JSON.stringify({
-            user,
-            balance,
-            overdraftLimit,
-            accountType,
-            interestRate,
-         }),
-      });
-      const data = await response.json();
-      console.log(data);
-      if (response.status === 201) {
-         // navigate("/login");
-         alert("Account Created Successfully");
-         navigate("/form-val-check");
+      const success = await createAccount(type, balance, overdraftLimit, interestRate);
+      if (success) {
+         navigate("/dashboard");
       } else {
-         console.log(response.status);
-         console.log("there was a server issue");
-         alert("An Error Occured");
+         setFormError(true);
       }
-      return response.status;
    };
+
    const handleSubmit = (e) => {
       e.preventDefault();
 
@@ -93,7 +72,7 @@ export default function Create({ type }) {
 
             <div className="border-b border-gray-900/10 pb-12 pt-10">
                <h2 className="text-base font-semibold leading-7 text-gray-900">Account Information</h2>
-               <p className="mt-1 text-sm leading-6 text-gray-600">Initial deposite.</p>
+               <p className="mt-1 text-sm leading-6 text-gray-600">Initial deposit.</p>
 
                <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                   <div className="sm:col-span-3">

@@ -13,31 +13,25 @@ export default function Home() {
       e.preventDefault();
       const email = e.target.email.value;
       const password = e.target.password.value;
-      let response = 0;
       if (email.length > 0) {
-         loginUser(email, password).then((res) => {
-            if (res === 200) {
-               alert("Login Successful");
-               navigate("/");
-            }
+         loginUser(email, password).catch((err) => {
+            console.log(err);
          });
       }
-      console.log(email);
-      console.log(password);
    };
    return (
       <>
          {/* Banner */}
          <div className="bg-orange-50 mt-2">
-            <div className="flex px-16 py-24">
+            <div className="flex flex-col lg:flex-row gap-12 lg:gap-0 md:px-16 md:py-24 py-10">
                {!user ? (
-                  <div className="w-full max-w-xs">
+                  <div className="w-full max-w-xs self-center lg:self-start">
                      <form
                         onSubmit={handleSubmit}
                         className="bg-white shadow-2xl rounded-lg px-4 pt-6 pb-8 mb-4"
                         method="POST"
                      >
-                        <h1 className=" text-2xl font-light">Hello</h1>
+                        <h1 className="text-2xl font-light">Hello</h1>
                         <h2 className="font-light pb-3">Sign on to manage your accounts.</h2>
                         <div className="mb-10">
                            <input
@@ -78,12 +72,12 @@ export default function Home() {
                ) : (
                   <div className="w-full max-w-xs">
                      <form className="bg-white shadow-2xl rounded-lg px-4 pt-8 pb-8 mb-4">
-                        <h1 className=" text-2xl font-light">Welcome back, {user.firstName}!</h1>
+                        <h1 className="text-2xl font-light">Welcome back, {user.firstName}!</h1>
                         <h2 className="font-light pt-2">What can we help you with today?</h2>
                      </form>
                   </div>
                )}
-               <div className="flex-col px-9">
+               <div className="flex-col text-center lg:px-9 lg:text-left">
                   <h1 className="pb-4 text-5xl text-red-700">
                      50% student loans credit when you apply for a loan with Aztec Credit Union!
                   </h1>
