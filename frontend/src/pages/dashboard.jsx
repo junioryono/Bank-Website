@@ -55,15 +55,11 @@ export default function Dashboard() {
                   <ul role="list" className="divide-y divide-gray-300 bg-slate-100 border-2">
                      {checkingsAndSavingsAccounts.map((account) => {
                         return (
-                           <Link
-                              type="li"
-                              to={"/dashboard/account/" + account.accountNumber}
-                              className="flex justify-between gap-x-6 py-5 hover:bg-gray-300 cursor-pointer px-5"
-                           >
+                           <li key={account.accountNumber} className="flex justify-between gap-x-6 py-5 px-5">
                               <div className="flex min-w-0 gap-x-4">
                                  <div className="min-w-0 flex-auto">
                                     <p className="text-lg font-semibold leading-6 text-gray-900 pb-3">
-                                       My {account.type === "savings" ? "Savings" : "Checkings"}
+                                       My {account.accountType}
                                     </p>
                                     <p className="mt-1 truncate text-sm leading-5 text-gray-500">
                                        Account ID: {account.accountNumber}
@@ -76,7 +72,7 @@ export default function Dashboard() {
                                     ${formatNumberWithCommas(account.balance)}
                                  </p>
                               </div>
-                           </Link>
+                           </li>
                         );
                      })}
                   </ul>
@@ -91,15 +87,11 @@ export default function Dashboard() {
                   <ul role="list" className="divide-y divide-gray-300 bg-slate-100 border-2">
                      {creditCardAndLoanAccounts.map((account) => {
                         return (
-                           <Link
-                              type="li"
-                              to={"/dashboard/account/" + account.accountNumber}
-                              className="flex justify-between gap-x-6 py-5 hover:bg-gray-300 cursor-pointer px-5"
-                           >
+                           <li key={account.accountNumber} className="flex justify-between gap-x-6 py-5 px-5">
                               <div className="flex min-w-0 gap-x-4">
                                  <div className="min-w-0 flex-auto">
                                     <p className="text-lg font-semibold leading-6 text-gray-900 pb-3">
-                                       My {account.type === "credit card" ? "Credit Card" : "Loan"}
+                                       My {account.accountType}
                                     </p>
                                     <p className="mt-1 truncate text-sm leading-5 text-gray-500">
                                        Account ID: {account.accountNumber}
@@ -112,7 +104,7 @@ export default function Dashboard() {
                                     ${formatNumberWithCommas(account.balance)}
                                  </p>
                               </div>
-                           </Link>
+                           </li>
                         );
                      })}
                   </ul>

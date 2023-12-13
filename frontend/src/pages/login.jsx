@@ -16,13 +16,15 @@ export default function Login() {
       if (email.length > 0) {
          loginUser(email, password).then((res) => {
             if (res === 200) {
-               alert("Login Successful");
-               navigate("/");
+               const redirect = queryParams.get("redirect");
+               if (redirect) {
+                  navigate(redirect);
+               } else {
+                  navigate("/dashboard");
+               }
             }
          });
       }
-      console.log(email);
-      console.log(password);
    };
 
    useEffect(() => {

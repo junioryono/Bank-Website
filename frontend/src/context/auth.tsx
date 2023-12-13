@@ -90,7 +90,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
          }),
       });
       const data = await response.json();
-      console.log(data);
 
       if (response.status === 200) {
          setAuthTokens(data);
@@ -129,13 +128,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
          }),
       });
       const data = await response.json();
-      console.log(data);
       if (response.status === 201) {
          // navigate("/login");
          alert("Registration Successful, Login Now");
       } else {
-         console.log(response.status);
-         console.log("there was a server issue");
          alert("An Error Occured");
       }
       return response.status;
@@ -161,15 +157,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             return null;
          }
 
-         const data = await response.json();
-         console.log(data);
-
-         return data;
+         return response.json();
       }
    };
 
-   const createAccount = async (accountType: any, balance: any, overdraftLimit: any, interestRate: any) => {
-      console.log(authTokens.access);
+   const createAccount = async (options: any) => {
       const response = await fetch("http://127.0.0.1:8000/users/account/create/", {
          method: "POST",
          headers: {
@@ -177,10 +169,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             Authorization: `Bearer ${authTokens?.access}`,
          },
          body: JSON.stringify({
-            balance,
-            overdraftLimit,
-            accountType,
-            interestRate,
+            ...options,
          }),
       }).then((res) => res.json());
 

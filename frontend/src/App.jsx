@@ -10,10 +10,7 @@ import ForgotPassword from "pages/forgot-password";
 import Apply from "pages/apply";
 import Create from "pages/create";
 import Profile from "pages/profile";
-import AccountInfoPage from "pages/account-info";
 import NotFound from "pages/404-page";
-import FormValidationPage from "./pages/form-val-check";
-import FormValidationPage2 from "./pages/form-val-apply";
 
 import AuthLayout from "layouts/auth";
 import Login from "pages/login";
@@ -42,10 +39,6 @@ const router = createBrowserRouter([
             element: <Dashboard />,
          },
          {
-            path: "dashboard/account/:id",
-            element: <AccountInfoPage />,
-         },
-         {
             path: "apply/credit-card",
             element: <Apply type="Credit Card" />,
          },
@@ -66,20 +59,8 @@ const router = createBrowserRouter([
             element: <Profile />,
          },
          {
-            path: "account-info",
-            element: <AccountInfoPage />,
-         },
-         {
             path: "*",
             element: <NotFound />,
-         },
-         {
-            path: "form-val-check",
-            element: <FormValidationPage />,
-         },
-         {
-            path: "form-val-apply",
-            element: <FormValidationPage2 />,
          },
       ],
    },

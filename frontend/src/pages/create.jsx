@@ -10,6 +10,7 @@ export default function Create({ type }) {
    const [formData, setFormData] = useState({
       balance: "",
       overdraftLimit: "",
+      interestRate: "",
    });
 
    const [formError, setFormError] = useState(false);
@@ -19,43 +20,36 @@ export default function Create({ type }) {
       setFormData({ ...formData, [name]: value });
    };
 
-   const creatAccount = async (e) => {
-      const balance = e.target.balance.value;
-      const overdraftLimit = e.target.overdraftLimit.value;
-      let interestRate = 0;
-
-      if (type === "Savings") {
-         interestRate = e.target.interestRate.value;
-      }
-
-      const success = await createAccount(type, balance, overdraftLimit, interestRate);
-      if (success) {
-         navigate("/dashboard");
-      } else {
-         setFormError(true);
-      }
-   };
-
-   const handleSubmit = (e) => {
+   const handleSubmit = async (e) => {
       e.preventDefault();
 
-      for (const key in formData) {
-         if (formData[key] === "") {
-            setFormError(true);
-            return;
-         }
+      if (
+         formData.balance === "" ||
+         formData.overdraftLimit === "" ||
+         (type === "Savings" && formData.interestRate === "")
+      ) {
+         setFormError(true);
+         return;
       }
-      creatAccount(e);
-      console.log("Form submitted:", formData);
-   };
 
-   const handleCancel = () => {
-      navigate(-1); // Go back to the previous page
+      const success = await createAccount({
+         accountType: type,
+         ...formData,
+         interestRate: type === "Savings" ? formData.interestRate : 0,
+      });
+
+      if (!success) {
+         alert("Failed to create account.");
+         return;
+      }
+
+      navigate("/dashboard");
+      return;
    };
 
    useEffect(() => {
       if (!user) {
-         navigate("/login?redirect=/apply/" + (type === "Checkings" ? "checkings" : "savings"));
+         navigate("/login?redirect=/create/" + (type === "Checkings" ? "checkings" : "savings"));
       }
    }, [user, navigate]);
 
@@ -130,7 +124,14 @@ export default function Create({ type }) {
             {formError && <p className="text-red-500 text-sm mt-2">Please fill out all fields of information.</p>}
 
             <div className="mt-6 flex items-center justify-end gap-x-6 pb-7">
-               <button type="button" className="text-sm font-semibold leading-6 text-gray-900" onClick={handleCancel}>
+               <button
+                  type="button"
+                  className="text-sm font-semibold leading-6 text-gray-900"
+                  onClick={() => {
+                     // Go back to the previous page
+                     navigate(-1);
+                  }}
+               >
                   Cancel
                </button>
                <button
