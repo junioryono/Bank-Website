@@ -8,14 +8,8 @@ export default function Create({ type }) {
    const { user } = useAuth();
    const navigate = useNavigate();
    const [formData, setFormData] = useState({
-      firstName: "",
-      lastName: "",
-      email: "",
-      country: "United States",
-      streetAddress: "",
-      city: "",
-      region: "",
-      postalCode: "",
+      balance: "",
+      overdraftLimit: "",
    });
 
    const [formError, setFormError] = useState(false);
@@ -25,6 +19,44 @@ export default function Create({ type }) {
       setFormData({ ...formData, [name]: value });
    };
 
+   const id = user.user_id;
+   const creatAccount = async (e) => {
+      const balance = e.target.balance.value;
+      const overdraftLimit = e.target.overdraftLimit.value;
+      let interestRate = 0;
+      const accountType = type;
+      const user = id;
+
+      if (type === "Savings") {
+         interestRate = e.target.interestRate.value;
+      }
+
+      const response = await fetch("http://127.0.0.1:8000/users/accounts/", {
+         method: "POST",
+         headers: {
+            "Content-Type": "application/json",
+         },
+         body: JSON.stringify({
+            user,
+            balance,
+            overdraftLimit,
+            accountType,
+            interestRate,
+         }),
+      });
+      const data = await response.json();
+      console.log(data);
+      if (response.status === 201) {
+         // navigate("/login");
+         alert("Account Created Successfully");
+         navigate("/form-val-check");
+      } else {
+         console.log(response.status);
+         console.log("there was a server issue");
+         alert("An Error Occured");
+      }
+      return response.status;
+   };
    const handleSubmit = (e) => {
       e.preventDefault();
 
@@ -34,9 +66,7 @@ export default function Create({ type }) {
             return;
          }
       }
-
-      navigate("/form-val-check");
-
+      creatAccount(e);
       console.log("Form submitted:", formData);
    };
 
@@ -62,20 +92,19 @@ export default function Create({ type }) {
             </div>
 
             <div className="border-b border-gray-900/10 pb-12 pt-10">
-               <h2 className="text-base font-semibold leading-7 text-gray-900">Personal Information</h2>
-               <p className="mt-1 text-sm leading-6 text-gray-600">Use a permanent address where you can receive mail.</p>
+               <h2 className="text-base font-semibold leading-7 text-gray-900">Account Information</h2>
+               <p className="mt-1 text-sm leading-6 text-gray-600">Initial deposite.</p>
 
                <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                   <div className="sm:col-span-3">
                      <label htmlFor="first-name" className="block text-sm font-medium leading-6 text-gray-900">
-                        First name
+                        Balance
                      </label>
                      <div className="mt-2">
                         <input
                            type="text"
-                           name="firstName"
-                           id="first-name"
-                           autoComplete="given-name"
+                           name="balance"
+                           id="balance"
                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
                            onChange={handleInputChange}
                         />
@@ -84,118 +113,37 @@ export default function Create({ type }) {
 
                   <div className="sm:col-span-3">
                      <label htmlFor="last-name" className="block text-sm font-medium leading-6 text-gray-900">
-                        Last name
+                        Over Draft Limit
                      </label>
                      <div className="mt-2">
                         <input
                            type="text"
-                           name="lastName"
-                           id="last-name"
-                           autoComplete="family-name"
+                           name="overdraftLimit"
+                           id="overdraftLimit"
                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
                            onChange={handleInputChange}
                         />
                      </div>
                   </div>
 
-                  <div className="sm:col-span-4">
-                     <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
-                        Email address
-                     </label>
-                     <div className="mt-2">
-                        <input
-                           id="email"
-                           name="email"
-                           type="email"
-                           autoComplete="email"
-                           className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
-                           onChange={handleInputChange}
-                        />
+                  {type === "Savings" ? (
+                     <div className="sm:col-span-3">
+                        <label htmlFor="last-name" className="block text-sm font-medium leading-6 text-gray-900">
+                           Interest Rate
+                        </label>
+                        <div className="mt-2">
+                           <input
+                              type="text"
+                              name="interestRate"
+                              id="interestRate"
+                              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
+                              onChange={handleInputChange}
+                           />
+                        </div>
                      </div>
-                  </div>
-
-                  <div className="sm:col-span-3">
-                     <label htmlFor="country" className="block text-sm font-medium leading-6 text-gray-900">
-                        Country
-                     </label>
-                     <div className="mt-2">
-                        <select
-                           id="country"
-                           name="country"
-                           autoComplete="country-name"
-                           className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset sm:max-w-xs sm:text-sm sm:leading-6"
-                           onChange={handleInputChange}
-                        >
-                           <option>United States</option>
-                           <option>Canada</option>
-                           <option>Mexico</option>
-                        </select>
-                     </div>
-                  </div>
-
-                  <div className="col-span-full">
-                     <label htmlFor="street-address" className="block text-sm font-medium leading-6 text-gray-900">
-                        Street address
-                     </label>
-                     <div className="mt-2">
-                        <input
-                           type="text"
-                           name="streetAddress"
-                           id="street-address"
-                           autoComplete="street-address"
-                           className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
-                           onChange={handleInputChange}
-                        />
-                     </div>
-                  </div>
-
-                  <div className="sm:col-span-2 sm:col-start-1">
-                     <label htmlFor="city" className="block text-sm font-medium leading-6 text-gray-900">
-                        City
-                     </label>
-                     <div className="mt-2">
-                        <input
-                           type="text"
-                           name="city"
-                           id="city"
-                           autoComplete="address-level2"
-                           className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
-                           onChange={handleInputChange}
-                        />
-                     </div>
-                  </div>
-
-                  <div className="sm:col-span-2">
-                     <label htmlFor="region" className="block text-sm font-medium leading-6 text-gray-900">
-                        State / Province
-                     </label>
-                     <div className="mt-2">
-                        <input
-                           type="text"
-                           name="region"
-                           id="region"
-                           autoComplete="address-level1"
-                           className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
-                           onChange={handleInputChange}
-                        />
-                     </div>
-                  </div>
-
-                  <div className="sm:col-span-2">
-                     <label htmlFor="postal-code" className="block text-sm font-medium leading-6 text-gray-900">
-                        ZIP / Postal code
-                     </label>
-                     <div className="mt-2">
-                        <input
-                           type="text"
-                           name="postalCode"
-                           id="postal-code"
-                           autoComplete="postal-code"
-                           className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
-                           onChange={handleInputChange}
-                        />
-                     </div>
-                  </div>
+                  ) : (
+                     <></>
+                  )}
                </div>
             </div>
 

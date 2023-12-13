@@ -1,4 +1,4 @@
-from users.models import User
+from users.models import User, account
 from users.models import Profile
 from django.contrib.auth.password_validation import validate_password
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
@@ -28,6 +28,15 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         token['image_path'] = str(user.profile.image_path)
         # ...
         return token
+
+
+class accountsSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = account
+        # fields = ('__all__')
+        fields = ('user', 'accountNumber', 'balance', 'overdraftLimit', 'accountType',
+                  'interestRate', 'creditLimit', 'minimumPayment', 'paymentDueDate')
 
 
 class RegisterSerializer(serializers.ModelSerializer):
